@@ -1,0 +1,33 @@
+.rewards__container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+.rewards__container h1{
+    font-size: 50px;
+    margin-top: 120px;
+}
+.rewards__container__table{
+    margin-top: 20px;
+    width: 80%; 
+}
+.rewards__container__table th{
+    background-color: rgba(00, 00, 00,0.5);
+    color:white
+}
+.rewards__container__table tr{
+    background-color: rgba(00, 00, 00,0.1);
+    color:black
+
+}
+.rewards__container__table td{
+    background-color: rgba(00, 00, 00,0.01);
+    color:black;
+    text-align: center;
+    
+}
