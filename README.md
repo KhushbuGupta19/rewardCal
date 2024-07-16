@@ -14,7 +14,7 @@ npm run test
 npm run dev
 
 #to Create Build
-npm run Build
+npm run build
 
 #have created one mock api using javascript promises.calling a function named fetchCustomerTransactions to perform the get operation. api is api.js file
 
