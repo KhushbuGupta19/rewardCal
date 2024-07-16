@@ -28,6 +28,10 @@
 .rewards__container__table td{
     background-color: rgba(00, 00, 00,0.01);
     color:black;
-    text-align: center;
-    
+    text-align: center;  
+}
+.error{
+    font-size: 30px;
+    margin-top: 100px;
+
 }
