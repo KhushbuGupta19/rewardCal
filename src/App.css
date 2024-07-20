@@ -35,3 +35,11 @@
     margin-top: 100px;
 
 }
+.Loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    height: 300px;
+    font-weight: 400;
+}

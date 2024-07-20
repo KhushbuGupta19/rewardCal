@@ -1,6 +1,6 @@
 import './App.css'
 
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { calculateRewards } from './Components/RewardCal'
 import { fetchData } from './Services'
@@ -9,17 +9,27 @@ import { renderRewardsData } from './Components/RewardCal'
 const App = () => {
   //Reward Points for customer
   const [rewardPoints, setRewardPoints] = useState({})
+  const[Loading,setLoading]=useState(false)
   useEffect(() => {
-     //calling fetchData function to fetch the transaction records
-    fetchData()
+    setLoading(true)
+   const timer=setTimeout(()=>{
+      //calling fetchData function to fetch the transaction records
+      fetchData()
       .then((res) => {
         setRewardPoints(calculateRewards(res))
+        setLoading(false)
       })
       .catch(() => {})
+   },500)
+   return()=>{
+    clearTimeout(timer)
+   }
   }, [])
   return (
     <div className="rewards__container">
-      {Object.keys(rewardPoints).length != 0 ? (
+      {Loading?<div className='Loader'>Loading....</div>
+      :
+      Object.keys(rewardPoints).length != 0 ? (
         <>
           <h1>Rewards Program</h1>
           <h3>Rewards Offered To Customer</h3>
@@ -27,6 +37,7 @@ const App = () => {
             <thead>
               <tr>
                 <th>Customer ID</th>
+                <th>Year</th>
                 <th>Month</th>
                 <th>Amount</th>
                 <th>Points</th>
@@ -38,7 +49,8 @@ const App = () => {
         </>
       ) : (
         <div className="error">Failed to fetch customer transactions</div>
-      )}
+      )
+    }
     </div>
   )
 }
