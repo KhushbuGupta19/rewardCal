@@ -23,10 +23,7 @@ npm run build
 #created one file named RewardsCal.jsx to calculate the rewards points using calculateRewards  which is taking transaction of customer as input and generating the rewards points on basis of that input.there is one function renderRewardsData inside this file which is used to render the data in tabular form,it is taking the rewards points as input as displaying data in more user-friendly way.
 
 
-#Documentation for all the screens of Application like for error message while fetching data from api .ErrorBoundary fallback Ui in case of app will get crash ,documentation for Test cases and flowchart .please check below link:
 
-#Documentation Link:
-#https://docs.google.com/document/d/1y97qVeuflk8hAIJ1CCxhOKPU3HgXJ5A_JoUcqBTdaiE/edit?usp=sharing
 
 Reward Calculation 
 Assigned Task:A retailer offers a rewards program to its customers, awarding points based on each recorded purchase.  
@@ -53,7 +50,8 @@ Total Points - Total reward points of each customer
 
 The Data Table of calculated Rewards Points of Each customer .the data is shorted according to the Customer id then year wise than month wise.
 
-![image](https://github.com/user-attachments/assets/791d0e32-b7ae-4728-a221-c54207590447)
+![image](https://github.com/user-attachments/assets/c82a2736-c0a6-4c3c-87a5-9442ba046978)
+
 
 Ex Customer:1
 month:4
@@ -97,8 +95,6 @@ It verifies the points for each month and the total points for each year.
 
 
 ![image](https://github.com/user-attachments/assets/392c8630-1244-4314-ad31-6bffeb7a5015)
-
-
 
 
 
