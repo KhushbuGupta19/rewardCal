@@ -1,7 +1,7 @@
 import { calculateRewards } from './Components/RewardCal';
-import { logger } from './Looger/Logger';
+import { logger } from './Logger/Logger';
 
-describe('calculatePoints', () => {
+describe('calculateRewards', () => {
   it('should calculate points correctly for the provided transactions', () => {
     const transactions = [
       { customerId: 1, amount: 120, date: '2024-04-01' },
@@ -18,10 +18,10 @@ describe('calculatePoints', () => {
     logger('Transactions:', transactions);
 
     const expectedPoints = {
-      1: { 2024: { 4: 90, 5: 25, total: 115 } },
-      2: { 2024: { 4: 250, 5: 90, 6: 150, total: 490 } },
-      4: { 2024: { 6: 275, total: 275 } },
-      5: { 2024: { 6: 250, total: 250 } },
+      1: { 2024: { months: { 4: { amount: 120, points: 90 }, 5: { amount: 125, points:100 } }, total: 190 } },
+      2: { 2024: { months: { 4: { amount: 200, points: 250 }, 5: { amount: 120, points: 90 }, 6: { amount: 150, points: 150 } }, total: 490 } },
+      4: { 2024: { months: { 6: { amount: 275, points: 400 } }, total: 400 } },
+      5: { 2024: { months: { 6: { amount: 200, points: 250 } }, total: 250 } },
     };
 
     const calculatedPoints = calculateRewards(transactions);
@@ -30,12 +30,13 @@ describe('calculatePoints', () => {
     // Check points for each customer
     Object.keys(expectedPoints).forEach(customerId => {
       Object.keys(expectedPoints[customerId]).forEach(year => {
-        Object.keys(expectedPoints[customerId][year]).forEach(month => {
-          if (month !== 'total') {
-            expect(calculatedPoints[customerId][year].months[month]).toBe(
-              expectedPoints[customerId][year][month],
-            );
-          }
+        Object.keys(expectedPoints[customerId][year].months).forEach(month => {
+          expect(calculatedPoints[customerId][year].months[month].points).toBe(
+            expectedPoints[customerId][year].months[month].points,
+          );
+          expect(calculatedPoints[customerId][year].months[month].amount).toBe(
+            expectedPoints[customerId][year].months[month].amount,
+          );
         });
         // Check total points for each year
         expect(calculatedPoints[customerId][year].total).toBe(
@@ -54,8 +55,8 @@ describe('calculatePoints', () => {
     logger('Transactions:', transactions);
 
     const expectedPoints = {
-      1: { 2024: { 4: 0, total: 0 } },
-      2: { 2024: { 5: 0, total: 0 } },
+      1: { 2024: { months: { 4: { amount: 30, points: 0 } }, total: 0 } },
+      2: { 2024: { months: { 5: { amount: 40, points: 0 } }, total: 0 } },
     };
 
     const calculatedPoints = calculateRewards(transactions);
@@ -64,12 +65,13 @@ describe('calculatePoints', () => {
 
     Object.keys(expectedPoints).forEach(customerId => {
       Object.keys(expectedPoints[customerId]).forEach(year => {
-        Object.keys(expectedPoints[customerId][year]).forEach(month => {
-          if (month !== 'total') {
-            expect(calculatedPoints[customerId][year].months[month]).toBe(
-              expectedPoints[customerId][year][month],
-            );
-          }
+        Object.keys(expectedPoints[customerId][year].months).forEach(month => {
+          expect(calculatedPoints[customerId][year].months[month].points).toBe(
+            expectedPoints[customerId][year].months[month].points,
+          );
+          expect(calculatedPoints[customerId][year].months[month].amount).toBe(
+            expectedPoints[customerId][year].months[month].amount,
+          );
         });
         expect(calculatedPoints[customerId][year].total).toBe(
           expectedPoints[customerId][year].total,
@@ -87,7 +89,7 @@ describe('calculatePoints', () => {
     logger('Transactions:', transactions);
 
     const expectedPoints = {
-      1: { 2023: { 12: 90, total: 90 }, 2024: { 1: 25, total: 25 } },
+      1: { 2023: { months: { 12: { amount: 120, points: 90 } }, total: 90 }, 2024: { months: { 1: { amount: 75, points: 25 } }, total: 25 } },
     };
 
     const calculatedPoints = calculateRewards(transactions);
@@ -96,12 +98,13 @@ describe('calculatePoints', () => {
 
     Object.keys(expectedPoints).forEach(customerId => {
       Object.keys(expectedPoints[customerId]).forEach(year => {
-        Object.keys(expectedPoints[customerId][year]).forEach(month => {
-          if (month !== 'total') {
-            expect(calculatedPoints[customerId][year].months[month]).toBe(
-              expectedPoints[customerId][year][month],
-            );
-          }
+        Object.keys(expectedPoints[customerId][year].months).forEach(month => {
+          expect(calculatedPoints[customerId][year].months[month].points).toBe(
+            expectedPoints[customerId][year].months[month].points,
+          );
+          expect(calculatedPoints[customerId][year].months[month].amount).toBe(
+            expectedPoints[customerId][year].months[month].amount,
+          );
         });
         expect(calculatedPoints[customerId][year].total).toBe(
           expectedPoints[customerId][year].total,
